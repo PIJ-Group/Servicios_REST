@@ -38,6 +38,7 @@ public class DaoVideojuego {
 		else {
 			listaVideojuegos.add(v);
 			cont = listaVideojuegos.size() -1;
+			System.out.println("Añadido el videojuego => " + listaVideojuegos.get(cont) + " a la lista");
 			return listaVideojuegos.get(cont);
 		}
 		
@@ -52,7 +53,7 @@ public class DaoVideojuego {
 			}
 			
 		}catch(IndexOutOfBoundsException e) {
-			System.out.println("El video juego no está en la lista");			
+			System.out.println("Borrar => El videojuego no está en la lista");			
 		}
 		
 		return null;
@@ -69,7 +70,7 @@ public class DaoVideojuego {
 			return vid;
 				
 		}catch(IndexOutOfBoundsException e) {
-			System.out.println("El video juego no está en la lista");		
+			System.out.println(" Actualizar => El videojuego no está en la lista");		
 			return null;
 		}
 		

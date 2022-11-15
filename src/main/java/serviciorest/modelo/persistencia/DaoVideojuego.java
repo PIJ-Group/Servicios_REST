@@ -52,20 +52,16 @@ public void añadirVideojuego(Videojuego v){
 
 public Videojuego borrarVideojuego(int id) { //REVISAR PARA QUE DEVUELVA ALGO CUANDO BORRE
 											//REVISAR CON BOOLEANO
+	
 	for(Videojuego v : listaVideojuegos) {
-		if(v.getId() == id)
-			return listaVideojuegos.remove(id);
-		
+		if(v.getId() == id){
+			listaVideojuegos.remove(id);
+			System.out.println("Borrar => Videojuego " + v + "");
+		}
 	}
-	return null;
-}
+	return null;			
+}		
 		
-	
-	
-	
-	
-
-
 public Videojuego actualizar(Videojuego v) {
 	
 	try {

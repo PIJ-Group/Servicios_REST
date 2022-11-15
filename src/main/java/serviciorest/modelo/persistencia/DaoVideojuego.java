@@ -3,11 +3,14 @@ package serviciorest.modelo.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import serviciorest.modelo.entidad.Videojuego;
 
+@Component
 public class DaoVideojuego {
 	
-	private List<Videojuego> listaVideojuegos;
+	public List<Videojuego> listaVideojuegos;
 	
 	
 	
@@ -31,9 +34,9 @@ public class DaoVideojuego {
 	}
 	
 	
-	public Videojuego AñadirVideojuego(Videojuego v){
+	public Videojuego añadirVideojuego(Videojuego v){
 		int cont = 0;
-		if(listaVideojuegos.contains(AñadirVideojuego(v)))
+		if(listaVideojuegos.contains(añadirVideojuego(v)))
 			return null;
 		else {
 			listaVideojuegos.add(v);
@@ -45,7 +48,7 @@ public class DaoVideojuego {
 	}
 	
 	
-	public Videojuego BorrarVideojuego(int id) { //REVISAR PARA QUE DEVUELVA ALGO CUANDO BORRE
+	public Videojuego borrarVideojuego(int id) { //REVISAR PARA QUE DEVUELVA ALGO CUANDO BORRE
 		try {
 			for(Videojuego vid : listaVideojuegos) {
 				if(vid.getId() == id)
@@ -60,7 +63,7 @@ public class DaoVideojuego {
 		
 	}
 	
-	public Videojuego Actualizar(Videojuego v) {
+	public Videojuego actualizar(Videojuego v) {
 		
 		try {
 			Videojuego vid = listaVideojuegos.get(v.getId());
@@ -76,7 +79,7 @@ public class DaoVideojuego {
 		
 	}
 		
-	public List<Videojuego> BuscarVideojuego(int id) {
+	public List<Videojuego> buscarVideojuego(int id) {
 		List<Videojuego> vid = new ArrayList<Videojuego>();
 			for(Videojuego v : listaVideojuegos) {
 				if(v.getId() == id){
@@ -86,5 +89,9 @@ public class DaoVideojuego {
 			
 			return vid;			
 	}		
+	
+	public List<Videojuego> listarVideojuegos(){
+        return listaVideojuegos;
+    }
 	
 }

@@ -34,23 +34,26 @@ private List<Videojuego> listaVideojuegos;
 	
 	
 	
-public Videojuego añadirVideojuego(Videojuego v){
-	int cont = 0;
-	if(listaVideojuegos.contains(añadirVideojuego(v)))
-		return null;
-	else {
-		listaVideojuegos.add(v);
-		cont = listaVideojuegos.size() -1;
-		System.out.println("Añadido el videojuego => " + listaVideojuegos.get(cont) + " a la lista");
-		return listaVideojuegos.get(cont);
-	}
+public void añadirVideojuego(Videojuego v){
 	
+	try {
+	for(Videojuego vid : listaVideojuegos) {
+		if(v.getId() != vid.getId() || v.getNombre() != vid.getNombre()) {
+			listaVideojuegos.add(v);
+			System.out.println("Añadido el videojuego => " + v + " a la lista");
+		}else {
+			System.out.println("DaoVideojuego Añadir => El videojuego ya está en la lista");
+		}
+	}
+	}catch(Exception eo) { //REVISAR ESTE CATCH para poner la excepción que corresponda
+		
+	}	
 }
 
 public Videojuego borrarVideojuego(int id) { //REVISAR PARA QUE DEVUELVA ALGO CUANDO BORRE
 											//REVISAR CON BOOLEANO
 	for(Videojuego v : listaVideojuegos) {
-		if(v.getId()== id)
+		if(v.getId() == id)
 			return listaVideojuegos.remove(id);
 		
 	}

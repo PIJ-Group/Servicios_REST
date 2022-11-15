@@ -27,7 +27,7 @@ public class ControladorVideojuegos {
 	//Añade un videojuego a la lista	
 	@PostMapping(path = "videojuegos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> agregarVideojuego(@RequestBody Videojuego v){
-		System.out.println("Añadir => Dando de alta videojuego: " + v);
+		System.out.println("Agregar => Dando de alta videojuego: " + v);
 		daoVideojuego.añadirVideojuego(v);
 		return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado
 	}

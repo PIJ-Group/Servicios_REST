@@ -33,64 +33,79 @@ private List<Videojuego> listaVideojuegos;
 	}
 	
 	
-	
-public void añadirVideojuego(Videojuego v){
-	
-	try {
-	for(Videojuego vid : listaVideojuegos) {
-		if(v.getId() != vid.getId() || v.getNombre() != vid.getNombre()) {
-			listaVideojuegos.add(v);
-			System.out.println("Añadido el videojuego => " + v + " a la lista");
-		}else {
-			System.out.println("DaoVideojuego Añadir => El videojuego ya está en la lista");
-		}
-	}
-	}catch(Exception eo) { //REVISAR ESTE CATCH para poner la excepción que corresponda
+	//AÑADIR
+	public Videojuego añadirVideojuego(Videojuego v){
 		
-	}	
-}
+	    int cont = 0;
+	    
+	    if(listaVideojuegos.contains(v)) {
+	    	System.out.println("Añadir => Videojuego en lista");
+	        return null;
+	    
+	    }else {
+	    	
+	        listaVideojuegos.add(v);
+	        cont = listaVideojuegos.size() -1;
+	        System.out.println("Añadido el videojuego => " + listaVideojuegos.get(cont) + " a la lista");
+	        return listaVideojuegos.get(cont);
+	    }
 
-public Videojuego borrarVideojuego(int id) { //REVISAR PARA QUE DEVUELVA ALGO CUANDO BORRE
-											//REVISAR CON BOOLEANO
-	
-	for(Videojuego v : listaVideojuegos) {
-		if(v.getId() == id){
-			listaVideojuegos.remove(id);
-			System.out.println("Borrar => Videojuego " + v + "");
-		}
 	}
-	return null;			
-}		
-		
-public Videojuego actualizar(Videojuego v) {
 	
-	try {
-		Videojuego vid = listaVideojuegos.get(v.getId());
-		vid.setNombre(v.getNombre());
-		vid.setCompañia(v.getCompañia());
-		vid.setNota(v.getNota());
-		return vid;
+	//BORRAR
+	public Videojuego borrarVideojuego(int id) {
+        										
+		try {
 			
-	}catch(IndexOutOfBoundsException e) {
-		System.out.println(" Actualizar => El videojuego no está en la lista");		
-		return null;
-	}
-	
-}
-	
-public List<Videojuego> buscarVideojuego(int id) {
-	List<Videojuego> vid = new ArrayList<Videojuego>();
-		for(Videojuego v : listaVideojuegos) {
-			if(v.getId() == id){
-				vid.add(v);
+			for(Videojuego v : listaVideojuegos) {
+				
+				if(v.getId() == id){
+					
+					int vAux = listaVideojuegos.indexOf(v);
+					System.out.println(vAux);
+					System.out.println("Borrar => Videojuego " + v + "");
+					return listaVideojuegos.remove(vAux);
+				}		
 			}
+		
+		}catch (UnsupportedOperationException e) {
+			System.out.println("Borrar => El videojuego no se encuentra en la lista ");
+			return null ;
+		}		
+		return null;	
+	}	
+	
+	//ACTUALIZAR
+	public Videojuego actualizar(Videojuego v) {
+		
+		try {
+			Videojuego vid = listaVideojuegos.get(v.getId());
+			vid.setNombre(v.getNombre());
+			vid.setCompañia(v.getCompañia());
+			vid.setNota(v.getNota());
+			return vid;
+				
+		}catch(IndexOutOfBoundsException e) {
+			System.out.println(" Actualizar => El videojuego no está en la lista");		
+			return null;
 		}
 		
-		return vid;			
-}		
-
-public List<Videojuego> listarVideojuegos(){
-    return listaVideojuegos;
-}
+	}
+	
+	//LISTAR
+	public List<Videojuego> buscarVideojuego(int id) {
+		List<Videojuego> vid = new ArrayList<Videojuego>();
+			for(Videojuego v : listaVideojuegos) {
+				if(v.getId() == id){
+					vid.add(v);
+				}
+			}
+			
+			return vid;			
+	}		
+	
+	public List<Videojuego> listarVideojuegos(){
+	    return listaVideojuegos;
+	}
 
 }

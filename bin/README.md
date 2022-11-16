@@ -42,7 +42,3 @@ Para cada opción, se tendrá que pedir los datos necesarios al usuario y/o most
 ***Consideraciones***
 
 Para toda la actividad se valorará la claridad de código, la modularidad, la eficiencia de los algoritmos empleados y comentarios explicativos sobre los puntos clave de la aplicación (JavaDoc o normales, lo que se consideré más apropiado).
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'Isra' of https://github.com/PIJ-Group/Servicios_REST.git

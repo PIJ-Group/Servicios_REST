@@ -79,17 +79,23 @@ private List<Videojuego> listaVideojuegos;
 	public Videojuego actualizar(Videojuego v) {
 		
 		try {
-			Videojuego vid = listaVideojuegos.get(v.getId());
-			vid.setNombre(v.getNombre());
-			vid.setCompañia(v.getCompañia());
-			vid.setNota(v.getNota());
-			return vid;
+			for(Videojuego vid : listaVideojuegos) {
+				if(vid.getId() == v.getId()) {
+					int vAux = listaVideojuegos.indexOf(vid);
+					Videojuego vix = listaVideojuegos.get(vAux);
+					vix.setNombre(v.getNombre());
+					vix.setCompañia(v.getCompañia());
+					vix.setNota(v.getNota());
+					return vix;
+				}
 				
+			}
+			
 		}catch(IndexOutOfBoundsException e) {
 			System.out.println(" Actualizar => El videojuego no está en la lista");		
 			return null;
 		}
-		
+		return null;
 	}
 	
 	//LISTAR

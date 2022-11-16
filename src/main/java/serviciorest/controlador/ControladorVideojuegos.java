@@ -52,13 +52,12 @@ public class ControladorVideojuegos {
 	//MODIFICAR
 	@PutMapping(path = "videojuegos/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> modificarVideojuego(@PathVariable("id") int id, @RequestBody Videojuego v){
-		System.out.println("Modificar => Modificando videojuego por ID : " + id);
-		System.out.println("Modificar => Modificando videojuego : " + v);
-		//v.setId(id);
+		System.out.println("Modificar => Modificando videojuego con ID : " + id);		
 		Videojuego vid = daoVideojuego.actualizar(v);
-		if(vid != null)
+		if(vid != null) {
+			System.out.println("Modificar => Videojuego modificado : " + v);
 			return new ResponseEntity<Videojuego>(HttpStatus.OK); //200 videojuego modificado
-		else
+		}else
 			return new ResponseEntity<Videojuego>(HttpStatus.NOT_FOUND); //404 videojuego no encontrado		
 	}
 	
@@ -70,11 +69,9 @@ public class ControladorVideojuegos {
 		List <Videojuego> v = daoVideojuego.buscarVideojuego(id);
 		if(v != null) {
 			return new ResponseEntity <List<Videojuego>> (v,HttpStatus.OK);//200 OK
-		}
-		else {
-			
+		}else 
 			return new ResponseEntity <List<Videojuego>> (HttpStatus.NOT_FOUND);//404 NOT FOUND
-		}
+		
 	}
 	
 	//LISTAR

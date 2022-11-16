@@ -24,14 +24,20 @@ public class ControladorVideojuegos {
 	@Autowired
 	private DaoVideojuego daoVideojuego;
 	
-	//Añade un videojuego a la lista	
+	//AÑADIR (REVISAR HTTPSTATUS)
 	@PostMapping(path = "videojuegos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> agregarVideojuego(@RequestBody Videojuego v){
-		System.out.println("Agregar => Dando de alta videojuego: " + v);
-		daoVideojuego.añadirVideojuego(v);
-		return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado
+		System.out.println("Agregar => Intentando dar de alta el videojuego: " + v);
+		//List<Videojuego> listAux = daoVideojuego.listarVideojuegos();
+		daoVideojuego.añadirVideojuego(v);		
+		//if (listAux.contains(v))
+		if (v == null)
+			return new ResponseEntity<Videojuego>(HttpStatus.I_AM_A_TEAPOT); //418 soy una tetera			
+		else
+			return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado
 	}
 	
+	//BORRAR
 	@DeleteMapping(path = "videojuegos/{id}")
 	public ResponseEntity<Videojuego> borrarVideojuego(@PathVariable("id") int id){
 		System.out.println("Borrar => Borrando videojuego con id : " + id);
@@ -43,7 +49,7 @@ public class ControladorVideojuegos {
 	}
 	
 	
-	//MODIFICAR VIDEOJUEGO POR ID
+	//MODIFICAR
 	@PutMapping(path = "videojuegos/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> modificarVideojuego(@PathVariable("id") int id, @RequestBody Videojuego v){
 		System.out.println("Modificar => Modificando videojuego por ID : " + id);
@@ -57,7 +63,7 @@ public class ControladorVideojuegos {
 	}
 	
 	
-	//Buscar videojuego por ID
+	//BUSCAR
 	@GetMapping(path = "videojuegos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <List<Videojuego>> obtenerVideojuego(@PathVariable("id")int id){
 		System.out.println("Obtener => Buscando videojuego con el id:" +id);
@@ -70,7 +76,8 @@ public class ControladorVideojuegos {
 			return new ResponseEntity <List<Videojuego>> (HttpStatus.NOT_FOUND);//404 NOT FOUND
 		}
 	}
-	// Listar Videojuego
+	
+	//LISTAR
 	@GetMapping(path="videojuegos/lista",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Videojuego>> listarVideojuegos(){
 		System.out.println("Listar => Listando todos los videojuegos");

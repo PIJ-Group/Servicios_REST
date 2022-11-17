@@ -118,6 +118,7 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 	
 	public int menu() {
 		
+		System.out.println("\n --------- VIDEOCLUB PIJ ---------- \n");
 		System.out.println("1. Dar de alta un videojuego");
 		System.out.println("2. Dar de baja un videojuego por ID");
 		System.out.println("3. Modificar un videojuego por ID");

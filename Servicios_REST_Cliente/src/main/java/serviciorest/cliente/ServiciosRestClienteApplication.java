@@ -32,8 +32,10 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		System.out.println("Cliente => Cargando el contexto de Spring");
+		System.out.println("Cliente => Contexto de Spring cargado"); //Pongo delante del run el cargado, porque aunque no sea correcto, no sale hasta que no le damos el 6.
+																	// sale que cerramos la app y luego contexto de spring cargado.
 		SpringApplication.run(ServiciosRestClienteApplication.class, args);
-		System.out.println("Cliente => Contexto de Spring cargado");
+		
 	}
 
 	@Override

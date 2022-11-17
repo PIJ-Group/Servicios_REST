@@ -98,7 +98,7 @@ private List<Videojuego> listaVideojuegos;
 		return null;
 	}
 	
-	//LISTAR
+	//BUSCAR
 	public List<Videojuego> buscarVideojuego(int id) {
 		List<Videojuego> vid = new ArrayList<Videojuego>();
 			for(Videojuego v : listaVideojuegos) {
@@ -110,6 +110,7 @@ private List<Videojuego> listaVideojuegos;
 			return vid;			
 	}		
 	
+	//LISTAR
 	public List<Videojuego> listarVideojuegos(){
 	    return listaVideojuegos;
 	}

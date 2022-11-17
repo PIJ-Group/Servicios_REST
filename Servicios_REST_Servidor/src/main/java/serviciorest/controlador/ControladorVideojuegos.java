@@ -24,17 +24,18 @@ public class ControladorVideojuegos {
 	@Autowired
 	private DaoVideojuego daoVideojuego;
 	
-	//AÑADIR (REVISAR HTTPSTATUS)
+	//AÑADIR 
 	@PostMapping(path = "videojuegos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> agregarVideojuego(@RequestBody Videojuego v){
 		System.out.println("Agregar => Intentando dar de alta el videojuego: " + v);
 		//List<Videojuego> listAux = daoVideojuego.listarVideojuegos();
 		daoVideojuego.añadirVideojuego(v);		
 		//if (listAux.contains(v))
-		if (v == null)
-			return new ResponseEntity<Videojuego>(HttpStatus.I_AM_A_TEAPOT); //418 soy una tetera			
+		if (v != null)
+			return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado			
 		else
-			return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado
+			return new ResponseEntity<Videojuego>(HttpStatus.I_AM_A_TEAPOT); //418 soy una tetera
+			
 	}
 	
 	//BORRAR

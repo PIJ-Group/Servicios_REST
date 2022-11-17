@@ -2,6 +2,7 @@ package serviciorest.cliente.entidad;
 
 import java.util.Objects;
 
+
 public class Videojuego {
 	private int id;
 	private String nombre;

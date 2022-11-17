@@ -36,9 +36,10 @@ public class ServicioProxyVideojuego {
 	public boolean borrarVideojuego(int id) {
 		try {
 			restTemplate.delete(URL + id);
+			System.out.println("Videojuego " + id + " borrado correctamente.");
 			return true;
 		}catch (HttpClientErrorException e) {
-			System.out.println("Borrar Videojuego => El videojuego no se ha podido borrar: " +id);
+			System.out.println("Borrar Videojuego => El videojuego " + id + " no se ha podido borrar");
 			System.out.println(e.getStatusCode());
 			return false;
 		}
@@ -48,9 +49,10 @@ public class ServicioProxyVideojuego {
 	public boolean actualizarVideojuego(Videojuego v) {
 		try {
 			restTemplate.put(URL + v.getId(),v,Videojuego.class);
+			System.out.println("Videojuego " + v.toString() + " modificado correctamente");
 			return true;
 		}catch (HttpClientErrorException e) {
-			System.out.println("Actualizar Videojuego => El videojuego no se ha podido actualizar: " +v.getId());
+			System.out.println("Actualizar Videojuego => El videojuego " + v.getId() + " no se ha podido actualizar");
 			System.out.println(e.getStatusCode());
 			return false;
 		}
@@ -63,7 +65,7 @@ public class ServicioProxyVideojuego {
 			System.out.println("Buscar Videojuego => Código de respuesta " + re.getStatusCode());
 			return re.getBody();
 		}catch (HttpClientErrorException e) {
-			System.out.println("Buscar Videojuego => El videojuego no se ha encontrado: " + id) ;
+			System.out.println("Buscar Videojuego => El videojuego " + id + " no se ha encontrado") ;
 			System.out.println(e.getStatusCode());
 			return null;
 			

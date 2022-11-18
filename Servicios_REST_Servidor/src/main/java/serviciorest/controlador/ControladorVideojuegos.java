@@ -28,14 +28,11 @@ public class ControladorVideojuegos {
 	@PostMapping(path = "videojuegos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Videojuego> agregarVideojuego(@RequestBody Videojuego v){
 		System.out.println("Agregar => Intentando dar de alta el videojuego: " + v);
-		//List<Videojuego> listAux = daoVideojuego.listarVideojuegos();
 		daoVideojuego.añadirVideojuego(v);		
-		//if (listAux.contains(v))
 		if (v != null)
 			return new ResponseEntity<Videojuego>(v, HttpStatus.CREATED); //201 videojuego creado			
 		else
-			return new ResponseEntity<Videojuego>(HttpStatus.I_AM_A_TEAPOT); //418 soy una tetera
-			
+			return new ResponseEntity<Videojuego>(HttpStatus.I_AM_A_TEAPOT); //418 soy una tetera		
 	}
 	
 	//BORRAR
@@ -65,20 +62,20 @@ public class ControladorVideojuegos {
 	
 	//BUSCAR
 	@GetMapping(path = "videojuegos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity <List<Videojuego>> obtenerVideojuego(@PathVariable("id")int id){
+	public ResponseEntity <Videojuego> obtenerVideojuego(@PathVariable("id")int id){
 		System.out.println("Obtener => Buscando videojuego con el id:" +id);
-		List <Videojuego> v = daoVideojuego.buscarVideojuego(id);
+		Videojuego v = daoVideojuego.buscarVideojuego(id);
 		if(v != null) {
-			return new ResponseEntity <List<Videojuego>> (v,HttpStatus.OK);//200 OK
+			return new ResponseEntity <Videojuego> (v,HttpStatus.OK);//200 OK
 		}else 
-			return new ResponseEntity <List<Videojuego>> (HttpStatus.NOT_FOUND);//404 NOT FOUND
+			return new ResponseEntity <Videojuego> (HttpStatus.NOT_FOUND);//404 NOT FOUND
 		
 	}
 	
 	//LISTAR
 	@GetMapping(path="videojuegos/lista",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Videojuego>> listarVideojuegos(){
-		System.out.println("Listar => Listando todos los videojuegos");
+		System.out.println("Listar => Mostrando la lista de videojuegos");
 		List <Videojuego> v = daoVideojuego.listarVideojuegos();
 		return new ResponseEntity <List<Videojuego>> (v,HttpStatus.OK);
 	}

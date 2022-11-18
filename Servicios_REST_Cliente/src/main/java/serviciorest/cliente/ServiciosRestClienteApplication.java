@@ -1,5 +1,6 @@
 package serviciorest.cliente;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +32,20 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Cliente => Cargando el contexto de Spring");
-		System.out.println("Cliente => Contexto de Spring cargado"); //Pongo delante del run el cargado, porque aunque no sea correcto, no sale hasta que no le damos el 6.
-																	// sale que cerramos la app y luego contexto de spring cargado.
-		SpringApplication.run(ServiciosRestClienteApplication.class, args);
 		
+		System.out.println("Cliente => Cargando el contexto de Spring");
+		SpringApplication.run(ServiciosRestClienteApplication.class, args);	
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		System.out.println("Cliente => Contexto de Spring cargado");
+		
+		//Inicialización de variables
 		int opcion;
 		Videojuego vAux;
+		List <Videojuego>listaVideojuegos = null;
 		int idAux;
 		
 		do {
@@ -76,7 +80,6 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 				break;
 				
 			case 3:
-				
 				vAux = new Videojuego();
 				
 				System.out.println("Escribe el ID del videojuego a modificar: ");
@@ -98,12 +101,15 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 			case 4:
 				System.out.println("Escribe el ID del videojuego a buscar: ");
 				idAux = sc.nextInt();
-				
-				spv.buscarVideojuego(idAux);
+				vAux = spv.buscarVideojuego(idAux);
+				System.out.println(vAux);
 				break;
 				
 			case 5:
-				spv.listarVideojuego();
+				listaVideojuegos = spv.listarVideojuego();
+				
+				for(Videojuego v : listaVideojuegos)
+				System.out.println(v);
 				break;
 			
 			case 6:
@@ -134,6 +140,7 @@ public class ServiciosRestClienteApplication implements CommandLineRunner {
 	
 	public void salir() {
 		 SpringApplication.exit(context, () ->0);
+		 System.out.println("El Cliente ha cerrado la conexión");
 	}
 	
 

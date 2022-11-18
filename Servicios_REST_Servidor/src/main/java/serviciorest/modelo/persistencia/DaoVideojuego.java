@@ -10,9 +10,7 @@ import serviciorest.modelo.entidad.Videojuego;
 @Component
 public class DaoVideojuego {
 private List<Videojuego> listaVideojuegos;
-	
-	
-	
+		
 	public DaoVideojuego () {
 		super();
 		System.out.println("DaoVideojuejo -> Cargando lista de videojuegos...");
@@ -32,7 +30,6 @@ private List<Videojuego> listaVideojuegos;
 		listaVideojuegos.add(v5);
 	}
 	
-	
 	//AÑADIR
 	public Videojuego añadirVideojuego(Videojuego v){
 		
@@ -49,18 +46,14 @@ private List<Videojuego> listaVideojuegos;
 	        System.out.println("Añadido el videojuego => " + listaVideojuegos.get(cont) + " a la lista");
 	        return listaVideojuegos.get(cont);
 	    }
-
 	}
 	
 	//BORRAR
 	public Videojuego borrarVideojuego(int id) {
         										
 		try {
-			
-			for(Videojuego v : listaVideojuegos) {
-				
+			for(Videojuego v : listaVideojuegos) {	
 				if(v.getId() == id){
-					
 					int vAux = listaVideojuegos.indexOf(v);
 					System.out.println(vAux);
 					System.out.println("Borrar => Videojuego " + v + "");
@@ -99,15 +92,13 @@ private List<Videojuego> listaVideojuegos;
 	}
 	
 	//BUSCAR
-	public List<Videojuego> buscarVideojuego(int id) {
-		List<Videojuego> vid = new ArrayList<Videojuego>();
+	public Videojuego buscarVideojuego(int id) {
 			for(Videojuego v : listaVideojuegos) {
 				if(v.getId() == id){
-					vid.add(v);
+					return v;
 				}
 			}
-			
-			return vid;			
+			return null;		
 	}		
 	
 	//LISTAR
